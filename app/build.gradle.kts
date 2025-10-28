@@ -18,13 +18,13 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // Kotlin 1.9.23 <-> Compose Compiler 1.5.12 (compat)
     composeOptions {
-        // Updated compiler extension version for Kotlin 1.9.24
-        // See https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-        kotlinCompilerExtensionVersion = "1.5.12" // Per map for Kotlin 1.9.24
+        kotlinCompilerExtensionVersion = "1.5.12"
     }
 
-    // This block correctly sets your Java and Kotlin compilers to Java 17
+    // Java/Kotlin 17
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -39,50 +39,44 @@ android {
 }
 
 dependencies {
-    // Force Kotlin Standard Library versions *within* dependencies block
+    // Keep Kotlin BOM aligned with your plugin version
     val kotlinVersion = libs.versions.kotlin.get()
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion") {
-        isForce = true
-    }
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion") {
-        isForce = true
-    }
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion") {
-        isForce = true
-    }
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"))
 
-
-    // Use alias from libs.versions.toml
+    // Compose BOM (drives Compose ui/material/material3 versions)
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    // Use aliases from libs.versions.toml
+    // Core AndroidX
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // Versions managed by BOM
+    // Compose UI
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
 
-    // Explicit Material Icons dependency using alias
+    // ✅ Material 3 (provides androidx.compose.material3.Slider)
+    implementation(libs.androidx.compose.material3)
+
+    // Optional: Material Icons (M2 icons still fine alongside M3)
     implementation(libs.androidx.compose.material.iconsExtended)
 
-    // View-system Material Components using alias
+    // View system Material Components (optional)
     implementation(libs.google.android.material)
 
-    // Splash using alias
+    // Splash
     implementation(libs.androidx.core.splashscreen)
 
-    // Wear Compose using aliases
+    // Wear Compose (you already had these)
     implementation(libs.androidx.wear.compose.material)
     implementation(libs.androidx.wear.compose.foundation)
     implementation(libs.androidx.wear.input)
     implementation(libs.androidx.wear.ongoing)
 
-    // Debug/Test dependencies using aliases
+    // Debug/Test
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     androidTestImplementation(libs.androidx.ui.test.junit4)

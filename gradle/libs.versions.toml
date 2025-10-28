@@ -1,48 +1,50 @@
 [versions]
 agp             = "8.5.2"
-kotlin          = "1.9.24"
-# Downgraded BOM to be compatible with Wear Compose 1.3.1 (which needs Compose 1.6.x)
-composeBom      = "2024.05.00"
+kotlin          = "1.9.23"
+composeBom      = "2024.05.00"   # Compose 1.6.x
 wearCompose     = "1.3.1"
 activityCompose = "1.9.3"
 coreSplashscreen= "1.0.1"
 coreKtx         = "1.13.1"
 lifecycleRuntimeKtx = "2.8.6"
-materialIconsExtended = "1.6.7" # Aligns with BOM 2024.05.00 (Compose 1.6.x)
+materialIconsExtended = "1.6.7"  # aligns with 1.6.x
 googleMaterial  = "1.12.0"
 wearInput       = "1.2.0"
 wearOngoing     = "1.0.0"
-uiTooling       = "1.6.7" # Aligns with BOM 2024.05.00
-uiTestManifest  = "1.6.7" # Aligns with BOM 2024.05.00
-uiTestJunit4    = "1.6.7" # Aligns with BOM 2024.05.00
-
+uiTooling       = "1.6.7"
+uiTestManifest  = "1.6.7"
+uiTestJunit4    = "1.6.7"
 
 [libraries]
-# Use alias from BOM for consistency
-androidx-compose-bom          = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui                   = { group = "androidx.compose.ui", name = "ui" } # Version managed by BOM
-androidx-ui-graphics          = { group = "androidx.compose.ui", name = "ui-graphics" } # Version managed by BOM
-androidx-ui-tooling           = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" } # Explicit version for debugImplementation
-androidx-ui-tooling-preview   = { group = "androidx.compose.ui", name = "ui-tooling-preview" } # Version managed by BOM
-androidx-ui-test-manifest     = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "uiTestManifest" } # Explicit version for debugImplementation
-androidx-ui-test-junit4       = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4"} # Explicit version for androidTestImplementation
+# BOM & UI
+androidx-compose-bom            = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui                     = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics            = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling             = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+androidx-ui-tooling-preview     = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest       = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "uiTestManifest" }
+androidx-ui-test-junit4         = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4"}
 
+# ✅ Material 3 (version comes from BOM)
+androidx-compose-material3      = { group = "androidx.compose.material3", name = "material3" }
 
-# Specific versions defined above or managed by BOM
+# Optional icons (M2)
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }
-androidx-wear-compose-material     = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
-androidx-wear-compose-foundation   = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
-androidx-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" } # Kept explicit as it's less common
 
-androidx-activity-compose     = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
-androidx-core-splashscreen    = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
-androidx-core-ktx             = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
-google-android-material       = { group = "com.google.android.material", name = "material", version.ref = "googleMaterial"}
-androidx-wear-input           = { group = "androidx.wear", name = "wear-input", version.ref = "wearInput" }
-androidx-wear-ongoing         = { group = "androidx.wear", name = "wear-ongoing", version.ref = "wearOngoing" }
+# Wear Compose
+androidx-wear-compose-material  = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
+androidx-wear-compose-foundation= { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
+androidx-wear-tooling-preview   = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" }
 
+# AndroidX/Google
+androidx-activity-compose       = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-core-splashscreen      = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-core-ktx               = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx  = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+google-android-material         = { group = "com.google.android.material", name = "material", version.ref = "googleMaterial"}
+androidx-wear-input             = { group = "androidx.wear", name = "wear-input", version.ref = "wearInput" }
+androidx-wear-ongoing           = { group = "androidx.wear", name = "wear-ongoing", version.ref = "wearOngoing" }
 
 [plugins]
-android-application  = { id = "com.android.application", version.ref = "agp" }
-kotlin-android       = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-application             = { id = "com.android.application", version.ref = "agp" }
+kotlin-android                  = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
