@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Wear-only -->
+    <uses-feature android:name="android.hardware.type.watch" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Splash">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <!-- Optional: mark as standalone so it shows in the watch launcher -->
+                <category android:name="com.google.android.wearable.standalone" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

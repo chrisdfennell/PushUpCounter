@@ -1,0 +1,13 @@
+<resources>
+    <!-- Use a view-system theme for post-splash.
+         MaterialComponents is available via com.google.android.material:material -->
+    <style name="Theme.PushUpCounter" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize if needed -->
+    </style>
+
+    <style name="Theme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.PushUpCounter</item>
+    </style>
+</resources>
